@@ -1,6 +1,6 @@
 language: go
 go: 1.14
-install: go mod install
+install: go mod download
 script: ./build.sh
 deploy:
   provider: releases
