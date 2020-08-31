@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ev
 
 function build() {
   os=$1
