@@ -7,7 +7,7 @@ deploy:
   api_key:
     secure: ay6kiOtIVx4BWmLCSvT9ayCE0uoXPaBE1csIP3BRIc8zccj04rjtMqiEvj1p5BmP0nawMNC5xNtFEoUejHYDVnILLtLW3rAqw7SOVfcCCt5+d6BcbmzvhaP7hSW9BAV6oG9zV4DgmQmM4byFNCA33VjGxaXSYYAek3nHJRyVIE3yUfss0Gsc6DMlOSTB4X4/xkEx7k50+feeTrMsey8dudqz9hq7512q0bUcW5LrhIntUjvcQl1/0vkaExrF3tvWs5tUFGYWAOahIylOVIDIWB41g4JRP6ao9YSnvhsFj5Mk0T0f/83b+ncxjxOpNOkoTUtAJsFgp81IsEs+UjH/ClmHg8o6ji2lAANrI+zI83pzFK3TIBnV3jwn8CpRv6SXiRA3xkKyhhmLvx5l/jHMT0ZfANbMqtCtwvU8kegHXOGmzaOLqAyrEKqYv/CximX9VnYa1SHjEDMls0d9Vul/xZDLRym2TjYcfaO72oZHPenpjbeAJw54mvkPJH5phuUj/1S2HE4hPrXZBf/ZzS0qTsQjerhfqyObiyxUkxRHagG3DXlKfjkf1Taoc92xgSOypV0nxbyCvqXjbvGjrGWDHHp5aXBzaPNNND+bXe3oYNnkXYd+RKbHdpk6lGNDDEMzLpkG0BR+Zq5pkswnvna6bY34a5fodnrNRqoabwcz/Ng=
   file_glob: true
-  file: build/*
+  file: build/**/*
   on:
     tags: true
   skip_cleanup: true
