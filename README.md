@@ -6,7 +6,8 @@ Cloud server tool.
 
 ## Support
 
-- [x] Aliyun
+- [x] [Aliyun](https://www.aliyun.com/)
+- [x] [Vultr](https://www.vultr.com/)
 
 ## Start
 
@@ -26,3 +27,14 @@ vss list --provider aliyun --region_id ${region_id}
 vss destroy --provider aliyun --instance_id ${instance_id}
 
 ```
+
+## Build
+
+```
+./build.sh [ linux|darwin|windows ]
+
+```
+
+## References
+
+- [Aliyun VPC Switches](https://vpcnext.console.aliyun.com/vpc/cn-hongkong/switches)

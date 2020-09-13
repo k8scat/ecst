@@ -10,6 +10,7 @@ func initConfigCmd() {
 	rootCmd.AddCommand(configCmd)
 	configCmd.Flags().StringVar(&config.AliyunAccessKeyID, "aliyun_access_key_id", config.AliyunAccessKeyID, "aliyun accessKeyID")
 	configCmd.Flags().StringVar(&config.AliyunAccessSecret, "aliyun_access_secret", config.AliyunAccessSecret, "aliyun accessSecret")
+	configCmd.Flags().StringVar(&config.VultrAPIKey, "vultr_api_key", config.VultrAPIKey, "vultr apiKey")
 }
 
 var configCmd = &cobra.Command{

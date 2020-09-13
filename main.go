@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/hsowan-me/vss/cmd"
+	"github.com/wanhuasong/vss/cmd"
 )
 
 func main() {
