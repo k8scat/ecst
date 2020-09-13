@@ -3,8 +3,8 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"github.com/hsowan-me/vss/server"
 	"github.com/spf13/cobra"
+	"github.com/wanhuasong/vss/server"
 	"log"
 )
 
@@ -31,27 +31,31 @@ var destroyCmd = &cobra.Command{
 		if err = validateDestroyOptions(); err != nil {
 			return
 		}
-		if option.Provider == server.ProviderAliyun {
-			if err = server.DestroyAliyunInstance(config, option); err != nil {
-				return
-			}
-			log.Println("instance destroyed")
-			return
+		switch option.Provider {
+		case server.ProviderAliyun:
+			client := server.NewAliyunClient(config.AliyunAccessKeyID, config.AliyunAccessSecret)
+			err = client.DestroyInstance(option.InstanceID)
+		case server.ProviderVultr:
+			client := server.NewVultrClient(config.VultrAPIKey)
+			err = client.DestroyInstance(option.InstanceID)
+		default:
+			err = fmt.Errorf("provider not support: %s", option.Provider)
+		}
+		if err == nil {
+			log.Printf("instance destroy success: %s", option.InstanceID)
 		}
 		return
 	},
 }
 
-func validateDestroyOptions() error {
+func validateDestroyOptions() (err error) {
 	if option.Provider == "" {
-		return errors.New("provider cannot be null")
+		err = errors.New("provider cannot be null")
+		return
 	}
-	if option.Provider == server.ProviderAliyun {
-		if option.InstanceID == "" {
-			return errors.New("instance id cannot be null")
-		}
-		return nil
-	} else {
-		return fmt.Errorf("provider not support: %s", option.Provider)
+	if option.InstanceID == "" {
+		err = errors.New("instance id cannot be null")
+		return
 	}
+	return nil
 }

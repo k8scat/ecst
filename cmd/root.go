@@ -3,9 +3,9 @@ package cmd
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/hsowan-me/vss/server"
 	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
+	"github.com/wanhuasong/vss/server"
 	"io/ioutil"
 	"os"
 	"runtime/debug"

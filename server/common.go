@@ -8,39 +8,6 @@ import (
 	"path"
 )
 
-const (
-	ProviderAliyun              string = "aliyun"
-	defaultRegionID             string = "cn-hangzhou"
-	aliyunInstanceStatusRunning string = "Running"
-	aliyunInstanceStatusStopped string = "Stopped"
-
-	ProviderVultr string = "vultr"
-)
-
-type Config struct {
-	AliyunAccessKeyID  string `json:"aliyun_access_key_id"`
-	AliyunAccessSecret string `json:"aliyun_access_secret"`
-	VultrAPIKey        string `json:"vultr_api_key"`
-}
-
-type Option struct {
-	Provider string
-	// Aliyun options
-	RegionID        string
-	InstanceType    string
-	ImageID         string
-	InstanceID      string
-	SecurityGroupID string
-	VSwitchID       string
-}
-
-type AliyunInstance struct {
-	InstanceID string
-	Password   string
-	Ips        []string
-	Status     string
-}
-
 func (c *Config) WriteFile(cfgFile string) error {
 	cfgDir := path.Dir(cfgFile)
 	fi, err := os.Stat(cfgDir)
@@ -58,16 +25,21 @@ func (c *Config) WriteFile(cfgFile string) error {
 	return encoder.Encode(c)
 }
 
-func ValidateConfig(config *Config, provider string) error {
-	if provider == ProviderAliyun {
+func ValidateConfig(config *Config, provider string) (err error) {
+	switch provider {
+	case ProviderAliyun:
 		if config.AliyunAccessKeyID == "" {
-			return errors.New("aliyun_access_key_id cannot be null")
+			err = errors.New("aliyun_access_key_id cannot be null")
 		}
 		if config.AliyunAccessSecret == "" {
-			return errors.New("aliyun_access_secret cannot be null")
+			err = errors.New("aliyun_access_secret cannot be null")
 		}
-		return nil
-	} else {
-		return fmt.Errorf("provider not support: %s", provider)
+	case ProviderVultr:
+		if config.VultrAPIKey == "" {
+			err = errors.New("vultr_api_key cannot be null")
+		}
+	default:
+		err = fmt.Errorf("provider not support: %s", provider)
 	}
+	return
 }
