@@ -37,4 +37,7 @@ vss destroy --provider aliyun --instance_id ${instance_id}
 
 ## References
 
+- [Aliyun ECS API](https://api.aliyun.com/#/?product=Ecs)
 - [Aliyun VPC Switches](https://vpcnext.console.aliyun.com/vpc/cn-hongkong/switches)
+
+- [Vultr API](https://www.vultr.com/api/#overview)
